@@ -88,5 +88,6 @@ VIEW schema_redundant_indexes (
         /* Unique prefix columns */
         LOCATE(CONCAT(dominant_keys.index_columns, ','), redundant_keys.index_columns) = 1
         AND dominant_keys.non_unique = 0
+        AND redundant_keys.non_unique = 0
       )
     );
