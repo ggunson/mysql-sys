@@ -58,7 +58,7 @@ VIEW schema_redundant_indexes (
     dominant_keys.non_unique AS dominant_index_non_unique,
     IF(redundant_keys.subpart_exists OR dominant_keys.subpart_exists, 1 ,0) AS subpart_exists,
     CONCAT(
-      'ALTER TABLE `', redundant_keys.table_schema, '`.`', redundant_keys.table_name, '` DROP ', IF(redundant_keys.non_unique = 0, '/* UNIQUE */',''), 'INDEX `', redundant_keys.index_name, '`'
+      'ALTER TABLE `', redundant_keys.table_schema, '`.`', redundant_keys.table_name, '` DROP ', IF(redundant_keys.non_unique = 0, '/* UNIQUE */ ',''), 'INDEX `', redundant_keys.index_name, '`'
       ) AS sql_drop_index
   FROM
     x$schema_flattened_keys AS redundant_keys
